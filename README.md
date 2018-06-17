@@ -1,27 +1,21 @@
 # minfaatong.github.io
 
-  ![logo](https://avatars0.githubusercontent.com/u/34262371?s=200&v=4 "mft logo") 
+![logo](https://avatars0.githubusercontent.com/u/34262371?s=200&v=4 "mft logo") 
  
- Minfaatong project page
- 
- Here's listing of hosted projects/ dependency projects
+*MFT Open API* allows third-party integration with our existing solution such as our "MFT Note" (pre-release code name).
 
-## Our porject(s) 
+> API = Application Programming Interface
 
-### MFT API Foundation
+## Under the hood 
+
+### MFT Foundation API
   
-  User Authentication + Authorization (implement in OAuth 2.0), Organization management, User management, address book
+Foundation API out-of-the-box provides open-standard authenticaton, user and organization management, as well as others foundation features, allowing third-party another option to authenticate and synchronous their settings.
 
-### MFT Financial
+### MFT Financial API
   
-  General Accounting, Account Payable, Account Receivable, consolidation. *(COMING SOON)*
+Financial API made enterprise-level ledger keeping easy, covers General Accounting, Account Payable, Account Receivable, and flexible consolidation reports.
 
-## Dependent projects:
+## Dependencies:
 
-### Spring Cloud Config
-
-### Eureka
-  
-### EVCache (forked from Netflix/EVCache) 
-  A distributed in-memory data store for the cloud
-  [https://github.com/minfaatong/EVCache]
+- Our solution made possible by standing on top of the shoulder of giants like SpringBoot, Spring Cloud Config, Eureka, EVCache and more. 
