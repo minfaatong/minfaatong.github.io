@@ -1,8 +1,10 @@
 # minfaatong.github.io
 
-  Minfaatong project page
-
-  Here's listing of hosted projects/ dependency projects
+  ![logo](https://avatars0.githubusercontent.com/u/34262371?s=200&v=4 "mft logo") 
+ 
+ Minfaatong project page
+ 
+ Here's listing of hosted projects/ dependency projects
 
 ## Our porject(s) 
 
