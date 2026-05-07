@@ -8,11 +8,12 @@
     <!-- Google AdSense Verification Tag -->
     <meta name="google-adsense-account" content="ca-pub-5654868401976691">
 
-    <!-- Pixel Fonts -->
+    <!-- Pixel Fonts: Press Start 2P for Headers, VT323 for Terminal text -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
 
+    <!-- Marked.js for Markdown Parsing -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
     <style>
@@ -20,7 +21,7 @@
             --apple-beige: #d2b48c;      /* Classic Apple II Case */
             --apple-dark-beige: #a68a64;
             --apple-plastic: #bc9e75;
-            --screen-bg: #1a1a1a;       /* Dark screen */
+            --screen-bg: #1a1a1a;       /* Dark CRT screen */
             --screen-text: #00ff41;     /* Green Phosphorus */
             --border-shadow: inset -2px -2px 0px #8b7355, inset 2px 2px 0px #fff;
             --pixel-font: 'Press Start 2P', cursive;
@@ -28,7 +29,7 @@
         }
 
         body {
-            background-color: #4a4a4a; /* Desk-like background */
+            background-color: #4a4a4a; /* Desk background */
             margin: 0;
             padding: 0;
             color: var(--screen-text);
@@ -36,7 +37,7 @@
             font-size: 1.2rem;
         }
 
-        /* APPLE II CASE STRUCTURE */
+        /* --- APPLE II HARDWARE CHASSIS --- */
         .computer-chassis {
             background-color: var(--apple-beige);
             max-width: 1100px;
@@ -104,7 +105,7 @@
             box-shadow: 0 0 8px #ff0000;
         }
 
-        /* SCREEN SECTION */
+        /* CRT SCREEN BEZEL */
         .screen-bezel {
             background: #333;
             padding: 25px;
@@ -122,7 +123,7 @@
             position: relative;
         }
 
-        /* PIXEL TEXTS */
+        /* TYPOGRAPHY */
         h1, h2, h3 {
             font-family: var(--pixel-font);
             text-transform: uppercase;
@@ -144,12 +145,12 @@
             width: 100px;
             height: 100px;
             border: 4px solid var(--screen-text);
-            filter: grayscale(1) contrast(1.2) brightness(0.8);
+            filter: grayscale(0.5) contrast(1.2) brightness(0.8);
             image-rendering: pixelated;
             margin-bottom: 1rem;
         }
 
-        /* DYNAMIC PRODUCT GRID */
+        /* --- DYNAMIC PRODUCT GRID --- */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -157,34 +158,6 @@
             margin-bottom: 4rem;
         }
 
-        /* Updated Product Card for Portrait Apps */
-        /* The container that provides the padding and crops the image */
-        .thumb-frame {
-            width: 100%;
-            height: 220px; /* Set the viewing window height */
-            background: #000;
-            border: 1px solid var(--screen-text);
-            margin-bottom: 1rem;
-            padding: 8px; /* The small padding you requested */
-            box-sizing: border-box;
-            overflow: hidden; /* This hides the lower part of the image */
-            display: flex;
-            justify-content: center;
-        }
-        
-        .product-thumb {
-            width: 100%;
-            height: 100%;
-            
-            /* FIT BY WIDTH: 'cover' fills the area, 'top' ensures the top is visible */
-            object-fit: cover; 
-            object-position: top; 
-            
-            filter: grayscale(0.5) contrast(1.2);
-            image-rendering: pixelated;
-            display: block;
-        }
-        
         .product-card {
             border: 2px solid var(--screen-text);
             padding: 1.5rem;
@@ -192,38 +165,35 @@
             display: flex;
             flex-direction: column;
             transition: all 0.2s;
+            height: 100%;
         }
-
-        /* .product-card {
-            border: 2px solid var(--screen-text);
-            padding: 1.5rem;
-            background: rgba(0, 255, 65, 0.05);
-            display: flex;
-            flex-direction: column;
-            transition: all 0.2s;
-            // Ensure cards in a row have the same height regardless of content
-            height: 100%; 
-        } */
-        
-       /*  .product-thumb {
-            width: 100%;
-            height: 250px; // Increased height for vertical app screenshots
-            border: 1px solid var(--screen-text);
-            margin-bottom: 1rem;
-            
-            // This is the magic: contain ensures the whole image fits without cropping 
-            object-fit: contain; 
-            
-            // Adds a dark background behind the image if the image doesn't fill the width 
-            background: #000; 
-            
-            // Maintains the retro look 
-            filter: grayscale(0.5) contrast(1.2);
-            image-rendering: pixelated;
-        } */
 
         .product-card:hover {
             background: rgba(0, 255, 65, 0.15);
+        }
+
+        /* THUMBNAIL CROPPING ENGINE */
+        .thumb-frame {
+            width: 100%;
+            height: 220px; /* Fixed viewing window */
+            background: #000;
+            border: 1px solid var(--screen-text);
+            margin-bottom: 1rem;
+            padding: 8px; /* Small padding requested */
+            box-sizing: border-box;
+            overflow: hidden; /* Crops the bottom of the image */
+            display: flex;
+            justify-content: center;
+        }
+
+        .product-thumb {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Fit by width */
+            object-position: top; /* Align to top, hide bottom */
+            filter: grayscale(0.4) contrast(1.1);
+            image-rendering: pixelated;
+            display: block;
         }
 
         .product-card h3 {
@@ -243,16 +213,14 @@
             margin-top: auto;
         }
 
-        /* WIREFRAME CARD */
+        /* WIREFRAME SLOT */
         .wireframe-card {
             border: 2px dashed var(--screen-text);
-            opacity: 0.5;
+            opacity: 0.6;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            font-family: var(--pixel-font);
-            font-size: 0.7rem;
             background: repeating-linear-gradient(
                 45deg,
                 transparent,
@@ -304,10 +272,10 @@
         }
     </style>
 </head>
-<body>
+<body id="main-body">
 
     <div class="computer-chassis">
-        <!-- Apple II Style Top Panel -->
+        <!-- Apple II Top Panel -->
         <div class="top-panel">
             <div class="nav-links">
                 <a href="#products">Store</a>
@@ -315,7 +283,7 @@
                 <a href="#about">About</a>
             </div>
             <div class="led-status">
-                <span>PWR</span>
+                <span class="mono">PWR</span>
                 <div class="led-light active"></div>
             </div>
         </div>
@@ -333,7 +301,7 @@
                 <!-- DYNAMIC PRODUCTS -->
                 <h2 id="products" style="font-size: 1.2rem; margin-bottom: 2rem;">[ DIGITAL_STORE ]</h2>
                 <div id="product-grid" class="product-grid">
-                    <!-- Loaded via JS -->
+                    <!-- Loaded via JS from products.json -->
                 </div>
 
                 <!-- LAB -->
@@ -364,43 +332,20 @@
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // 1. DYNAMIC PRODUCT ENGINE
+        // 1. DYNAMIC PRODUCT ENGINE (Fetch from GitHub Raw)
         async function loadProducts() {
             const grid = document.getElementById('product-grid');
-            // Change this to the RAW URL of your json file
-            const products_json_url = 'https://raw.githubusercontent.com/minfaatong/minfaatong.github.io/master/products.json';
-          
+            const url = 'https://raw.githubusercontent.com/minfaatong/minfaatong.github.io/master/products.json';
+            
             try {
-                const response = await fetch(products_json_url);
+                const response = await fetch(url);
+                if (!response.ok) throw new Error('JSON not found');
                 const products = await response.json();
                 
                 let html = '';
                 products.forEach(p => {
                     html += `
                         <div class="product-card" style="${p.isFlagship ? 'border-width: 4px; box-shadow: 0 0 10px var(--screen-text);' : ''}">
-                            <img src="${p.thumb}" class="product-thumb">
-                            <h3>${p.name}</h3>
-                            <p style="font-size: 0.9rem; margin-bottom: 1rem;">${p.description}</p>
-                            <a href="${p.link}" class="btn">DOWNLOAD_NOW</a>
-                        </div>
-                    `;
-                });
-
-                // WIREFRAME LOGIC: If products count is odd, add one wireframe card to keep 2x2 grid
-                // if (products.length % 2 !== 0) {
-                //     html += `
-                //         <div class="product-card wireframe-card">
-                //             <div>
-                //                 <p>[ EMPTY_SLOT ]</p>
-                //                 <p style="font-size: 0.5rem; margin-top:10px;">Future Product Blueprint</p>
-                //             </div>
-                //         </div>
-                //     `;
-                // }
-                products.forEach(p => {
-                    html += `
-                        <div class="product-card" style="${p.isFlagship ? 'border-width: 4px; box-shadow: 0 0 10px var(--screen-text);' : ''}">
-                            <!-- Wrapped image in a frame for padding and cropping -->
                             <div class="thumb-frame">
                                 <img src="${p.thumb}" class="product-thumb">
                             </div>
@@ -410,14 +355,26 @@
                         </div>
                     `;
                 });
-                
+
+                // SYMMETRY LOGIC: If products count is odd, add wireframe card to keep 2-col balance
+                if (products.length % 2 !== 0) {
+                    html += `
+                        <div class="product-card wireframe-card">
+                            <div style="text-align:center">
+                                <p style="font-family: var(--pixel-font); font-size: 0.6rem;">[ EMPTY_SLOT ]</p>
+                                <p style="font-size: 0.5rem; margin-top:10px; font-family: var(--mono-font);">Future Product Blueprint</p>
+                            </div>
+                        </div>
+                    `;
+                }
+
                 grid.innerHTML = html;
             } catch (e) {
-                grid.innerHTML = `<p>Error loading products.json</p>`;
+                grid.innerHTML = `<p class="mono">ERROR: Could not load products.json from GitHub Raw</p>`;
             }
         }
 
-        // 2. MARKDOWN ENGINE
+        // 2. MARKDOWN ENGINE (Fetch from GitHub Raw)
         async function renderMarkdown() {
             const url = 'https://raw.githubusercontent.com/minfaatong/minfaatong.github.io/refs/heads/master/README.md';
             const contentDiv = document.getElementById('content');
@@ -430,6 +387,7 @@
             }
         }
 
+        // Initialize
         loadProducts();
         renderMarkdown();
     </script>
