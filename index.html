@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Min Faat Tong</title>
+    <title>Min Faa Tong</title>
     
     <!-- Google AdSense Verification Tag -->
     <meta name="google-adsense-account" content="ca-pub-5654868401976691">
@@ -44,11 +44,10 @@
             border-radius: 24px;
             box-shadow: var(--shadow);
             text-align: center;
-            max-width: 800px; /* Wider for content */
+            max-width: 800px; 
             width: 100%;
         }
 
-        /* Profile Header */
         .profile-header {
             margin-bottom: 3rem;
             border-bottom: 1px solid #eee;
@@ -82,10 +81,18 @@
 
         /* Markdown Content Styling */
         .markdown-body {
-            text-align: left; /* Reset text align for readability */
+            text-align: left; 
             line-height: 1.7;
             font-size: 1rem;
             color: var(--text-main);
+        }
+
+        /* Loading state styling */
+        .loading-text {
+            text-align: center;
+            color: var(--text-muted);
+            font-style: italic;
+            display: block;
         }
 
         .markdown-body h1, .markdown-body h2, .markdown-body h3 {
@@ -137,40 +144,30 @@
             color: #b2bec3;
             text-align: center;
         }
-
-        /* Loading animation */
-        #content::before {
-            content: "Loading content...";
-            display: block;
-            text-align: center;
-            color: var(--text-muted);
-            font-style: italic;
-        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- Profile Header -->
         <div class="profile-header">
-            <img src="https://github.com/minfaatong.png" alt="Min Faat Tong" class="profile-img">
-            <h1>Min Faat Tong</h1>
+            <img src="https://github.com/minfaatong.png" alt="Min Faa Tong" class="profile-img">
+            <h1>Min Faa Tong</h1>
             <p class="bio">Welcome to my digital space.</p>
         </div>
 
-        <!-- Dynamic Markdown Content -->
-        <div id="content" class="markdown-body"></div>
+        <!-- Loading text is now INSIDE the div -->
+        <div id="content" class="markdown-body">
+            <span class="loading-text">Loading content...</span>
+        </div>
 
         <footer>
-            &copy; <span id="year"></span> Min Faat Tong
+            &copy; <span id="year"></span> Min Faa Tong
         </footer>
     </div>
 
     <script>
-        // Update Year
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Fetch and Render Markdown
         async function renderMarkdown() {
             const url = 'https://raw.githubusercontent.com/minfaatong/minfaatong.github.io/refs/heads/master/README.md';
             const contentDiv = document.getElementById('content');
@@ -181,14 +178,13 @@
                 
                 const markdownText = await response.text();
                 
-                // Use marked.parse to convert MD to HTML
+                // This line completely replaces the "Loading content..." span with the rendered HTML
                 contentDiv.innerHTML = marked.parse(markdownText);
             } catch (error) {
                 contentDiv.innerHTML = `<p style="color: red; text-align: center;">Error loading content: ${error.message}</p>`;
             }
         }
 
-        // Run the function on page load
         renderMarkdown();
     </script>
 
