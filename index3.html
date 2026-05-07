@@ -158,6 +158,33 @@
         }
 
         /* Updated Product Card for Portrait Apps */
+        /* The container that provides the padding and crops the image */
+        .thumb-frame {
+            width: 100%;
+            height: 220px; /* Set the viewing window height */
+            background: #000;
+            border: 1px solid var(--screen-text);
+            margin-bottom: 1rem;
+            padding: 8px; /* The small padding you requested */
+            box-sizing: border-box;
+            overflow: hidden; /* This hides the lower part of the image */
+            display: flex;
+            justify-content: center;
+        }
+        
+        .product-thumb {
+            width: 100%;
+            height: 100%;
+            
+            /* FIT BY WIDTH: 'cover' fills the area, 'top' ensures the top is visible */
+            object-fit: cover; 
+            object-position: top; 
+            
+            filter: grayscale(0.5) contrast(1.2);
+            image-rendering: pixelated;
+            display: block;
+        }
+        
         .product-card {
             border: 2px solid var(--screen-text);
             padding: 1.5rem;
@@ -165,27 +192,8 @@
             display: flex;
             flex-direction: column;
             transition: all 0.2s;
-            /* Ensure cards in a row have the same height regardless of content */
-            height: 100%; 
         }
-        
-        .product-thumb {
-            width: 100%;
-            height: 250px; /* Increased height for vertical app screenshots */
-            border: 1px solid var(--screen-text);
-            margin-bottom: 1rem;
-            
-            /* This is the magic: contain ensures the whole image fits without cropping */
-            object-fit: contain; 
-            
-            /* Adds a dark background behind the image if the image doesn't fill the width */
-            background: #000; 
-            
-            /* Maintains the retro look */
-            filter: grayscale(0.5) contrast(1.2);
-            image-rendering: pixelated;
-        }
-        
+
         /* .product-card {
             border: 2px solid var(--screen-text);
             padding: 1.5rem;
@@ -193,20 +201,30 @@
             display: flex;
             flex-direction: column;
             transition: all 0.2s;
+            // Ensure cards in a row have the same height regardless of content
+            height: 100%; 
+        } */
+        
+       /*  .product-thumb {
+            width: 100%;
+            height: 250px; // Increased height for vertical app screenshots
+            border: 1px solid var(--screen-text);
+            margin-bottom: 1rem;
+            
+            // This is the magic: contain ensures the whole image fits without cropping 
+            object-fit: contain; 
+            
+            // Adds a dark background behind the image if the image doesn't fill the width 
+            background: #000; 
+            
+            // Maintains the retro look 
+            filter: grayscale(0.5) contrast(1.2);
+            image-rendering: pixelated;
         } */
 
         .product-card:hover {
             background: rgba(0, 255, 65, 0.15);
         }
-
-        /* .product-thumb {
-            width: 100%;
-            height: 150px;
-            border: 1px solid var(--screen-text);
-            margin-bottom: 1rem;
-            object-fit: cover;
-            filter: grayscale(1) contrast(1.2);
-        } */
 
         .product-card h3 {
             font-size: 1rem;
@@ -369,17 +387,30 @@
                 });
 
                 // WIREFRAME LOGIC: If products count is odd, add one wireframe card to keep 2x2 grid
-                if (products.length % 2 !== 0) {
+                // if (products.length % 2 !== 0) {
+                //     html += `
+                //         <div class="product-card wireframe-card">
+                //             <div>
+                //                 <p>[ EMPTY_SLOT ]</p>
+                //                 <p style="font-size: 0.5rem; margin-top:10px;">Future Product Blueprint</p>
+                //             </div>
+                //         </div>
+                //     `;
+                // }
+                products.forEach(p => {
                     html += `
-                        <div class="product-card wireframe-card">
-                            <div>
-                                <p>[ EMPTY_SLOT ]</p>
-                                <p style="font-size: 0.5rem; margin-top:10px;">Future Product Blueprint</p>
+                        <div class="product-card" style="${p.isFlagship ? 'border-width: 4px; box-shadow: 0 0 10px var(--screen-text);' : ''}">
+                            <!-- Wrapped image in a frame for padding and cropping -->
+                            <div class="thumb-frame">
+                                <img src="${p.thumb}" class="product-thumb">
                             </div>
+                            <h3 style="font-family: var(--pixel-font);">${p.name}</h3>
+                            <p style="font-size: 0.9rem; margin-bottom: 1rem; font-family: var(--mono-font);">${p.description}</p>
+                            <a href="${p.link}" class="btn">DOWNLOAD_NOW</a>
                         </div>
                     `;
-                }
-
+                });
+                
                 grid.innerHTML = html;
             } catch (e) {
                 grid.innerHTML = `<p>Error loading products.json</p>`;
