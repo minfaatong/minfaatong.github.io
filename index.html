@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Min Faat Tong</title>
+    
+    <!-- Google AdSense Verification Tag -->
+    <meta name="google-adsense-account" content="ca-pub-5654868401976691">
+
+    <!-- Google Fonts for a professional look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #f8f9fa;
+            --text-main: #2d3436;
+            --text-muted: #636e72;
+            --accent-color: #0984e3;
+            --card-bg: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            background-color: var(--card-bg);
+            padding: 3rem 2rem;
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            transition: transform 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #fff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin: 0 0 0.5rem 0;
+            letter-spacing: -0.5px;
+        }
+
+        .bio {
+            font-size: 1rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .link-item {
+            text-decoration: none;
+            color: var(--text-main);
+            background: #f1f2f6;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-weight: 400;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .link-item:hover {
+            background: var(--accent-color);
+            color: white;
+            transform: scale(1.02);
+        }
+
+        footer {
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: #b2bec3;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 480px) {
+            .container {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Replace with your actual profile image URL -->
+        <img src="https://github.com/minfaatong.png" alt="Min Faa Tong" class="profile-img">
+        
+        <h1>Min Faat Tong</h1>
+        <p class="bio">
+            Welcome to my personal page. I am passionate about technology, development, and continuous learning.
+        </p>
+
+        <div class="links-container">
+            <a href="https://github.com/minfaatong" class="link-item" target="_blank">GitHub</a>
+            <a href="https://linkedin.com/in/yourusername" class="link-item" target="_blank">LinkedIn</a>
+            <a href="mailto:your-email@example.com" class="link-item">Contact Me</a>
+        </div>
+
+        <footer>
+            &copy; <span id="year"></span> Min Faat Tong
+        </footer>
+    </div>
+
+    <script>
+        // Automatically update the footer year
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+
+</body>
+</html>
