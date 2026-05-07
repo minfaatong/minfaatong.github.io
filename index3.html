@@ -157,6 +157,7 @@
             margin-bottom: 4rem;
         }
 
+        /* Updated Product Card for Portrait Apps */
         .product-card {
             border: 2px solid var(--screen-text);
             padding: 1.5rem;
@@ -164,20 +165,48 @@
             display: flex;
             flex-direction: column;
             transition: all 0.2s;
+            /* Ensure cards in a row have the same height regardless of content */
+            height: 100%; 
         }
+        
+        .product-thumb {
+            width: 100%;
+            height: 250px; /* Increased height for vertical app screenshots */
+            border: 1px solid var(--screen-text);
+            margin-bottom: 1rem;
+            
+            /* This is the magic: contain ensures the whole image fits without cropping */
+            object-fit: contain; 
+            
+            /* Adds a dark background behind the image if the image doesn't fill the width */
+            background: #000; 
+            
+            /* Maintains the retro look */
+            filter: grayscale(0.5) contrast(1.2);
+            image-rendering: pixelated;
+        }
+        
+        /* .product-card {
+            border: 2px solid var(--screen-text);
+            padding: 1.5rem;
+            background: rgba(0, 255, 65, 0.05);
+            display: flex;
+            flex-direction: column;
+            transition: all 0.2s;
+        } */
 
         .product-card:hover {
             background: rgba(0, 255, 65, 0.15);
         }
 
-        .product-thumb {
+        /* .product-thumb {
             width: 100%;
             height: 150px;
             border: 1px solid var(--screen-text);
             margin-bottom: 1rem;
             object-fit: cover;
             filter: grayscale(1) contrast(1.2);
-        }
+        } */
 
         .product-card h3 {
             font-size: 1rem;
