@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MFT Lab | Apple II Edition</title>
+    
+    <!-- Google AdSense Verification Tag -->
+    <meta name="google-adsense-account" content="ca-pub-5654868401976691">
+
+    <!-- Pixel Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <style>
+        :root {
+            --apple-beige: #d2b48c;      /* Classic Apple II Case */
+            --apple-dark-beige: #a68a64;
+            --apple-plastic: #bc9e75;
+            --screen-bg: #1a1a1a;       /* Dark screen */
+            --screen-text: #00ff41;     /* Green Phosphorus */
+            --border-shadow: inset -2px -2px 0px #8b7355, inset 2px 2px 0px #fff;
+            --pixel-font: 'Press Start 2P', cursive;
+            --mono-font: 'VT323', monospace;
+        }
+
+        body {
+            background-color: #4a4a4a; /* Desk-like background */
+            margin: 0;
+            padding: 0;
+            color: var(--screen-text);
+            font-family: var(--mono-font);
+            font-size: 1.2rem;
+        }
+
+        /* APPLE II CASE STRUCTURE */
+        .computer-chassis {
+            background-color: var(--apple-beige);
+            max-width: 1100px;
+            margin: 40px auto;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 5px 0 var(--apple-dark-beige);
+            border: 4px solid var(--apple-dark-beige);
+        }
+
+        /* TOP PANEL (NAV & LED) */
+        .top-panel {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--apple-plastic);
+            padding: 15px 25px;
+            border-radius: 8px;
+            border: var(--border-shadow);
+            margin-bottom: 30px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #5d4037;
+            font-family: var(--pixel-font);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            padding: 5px 10px;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .nav-links a:hover {
+            border: 1px solid #5d4037;
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* LED STATUS LIGHT */
+        .led-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--pixel-font);
+            font-size: 0.6rem;
+            color: #5d4037;
+        }
+
+        .led-light {
+            width: 12px;
+            height: 12px;
+            background: #333;
+            border-radius: 50%;
+            box-shadow: inset 0 0 2px #000;
+            position: relative;
+        }
+
+        .led-light.active {
+            background: #ff0000; /* Classic Power Red */
+            box-shadow: 0 0 8px #ff0000;
+        }
+
+        /* SCREEN SECTION */
+        .screen-bezel {
+            background: #333;
+            padding: 25px;
+            border-radius: 10px;
+            border: 8px solid var(--apple-dark-beige);
+            box-shadow: inset 0 0 20px #000;
+        }
+
+        .screen-content {
+            background: var(--screen-bg);
+            min-height: 600px;
+            border-radius: 4px;
+            padding: 40px;
+            box-shadow: inset 0 0 100px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        /* PIXEL TEXTS */
+        h1, h2, h3 {
+            font-family: var(--pixel-font);
+            text-transform: uppercase;
+            line-height: 1.4;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            color: var(--screen-text);
+            text-shadow: 2px 2px #000;
+        }
+
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border: 4px solid var(--screen-text);
+            filter: grayscale(1) contrast(1.2) brightness(0.8);
+            image-rendering: pixelated;
+            margin-bottom: 1rem;
+        }
+
+        /* DYNAMIC PRODUCT GRID */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .product-card {
+            border: 2px solid var(--screen-text);
+            padding: 1.5rem;
+            background: rgba(0, 255, 65, 0.05);
+            display: flex;
+            flex-direction: column;
+            transition: all 0.2s;
+        }
+
+        .product-card:hover {
+            background: rgba(0, 255, 65, 0.15);
+        }
+
+        .product-thumb {
+            width: 100%;
+            height: 150px;
+            border: 1px solid var(--screen-text);
+            margin-bottom: 1rem;
+            object-fit: cover;
+            filter: grayscale(1) contrast(1.2);
+        }
+
+        .product-card h3 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            font-family: var(--pixel-font);
+            font-size: 0.6rem;
+            color: var(--screen-bg);
+            background: var(--screen-text);
+            padding: 10px;
+            text-align: center;
+            text-decoration: none;
+            margin-top: auto;
+        }
+
+        /* WIREFRAME CARD */
+        .wireframe-card {
+            border: 2px dashed var(--screen-text);
+            opacity: 0.5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-family: var(--pixel-font);
+            font-size: 0.7rem;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(0, 255, 65, 0.05) 10px,
+                rgba(0, 255, 65, 0.05) 20px
+            );
+        }
+
+        /* LAB & ABOUT */
+        .lab-screen {
+            border: 2px solid var(--screen-text);
+            height: 300px;
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+            font-family: var(--pixel-font);
+            font-size: 0.8rem;
+            text-align: center;
+        }
+
+        .about-section {
+            border-top: 2px solid var(--screen-text);
+            padding-top: 2rem;
+            font-family: var(--mono-font);
+        }
+
+        .markdown-body pre {
+            background: #000;
+            color: var(--screen-text);
+            border: 1px solid var(--screen-text);
+            padding: 1rem;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            font-family: var(--pixel-font);
+            font-size: 0.6rem;
+            color: var(--screen-text);
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .product-grid { grid-template-columns: 1fr; }
+            .computer-chassis { margin: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="computer-chassis">
+        <!-- Apple II Style Top Panel -->
+        <div class="top-panel">
+            <div class="nav-links">
+                <a href="#products">Store</a>
+                <a href="#lab">Lab</a>
+                <a href="#about">About</a>
+            </div>
+            <div class="led-status">
+                <span>PWR</span>
+                <div class="led-light active"></div>
+            </div>
+        </div>
+
+        <div class="screen-bezel">
+            <div class="screen-content">
+                
+                <!-- HERO -->
+                <section class="hero">
+                    <img src="https://github.com/minfaatong.png" alt="MFT" class="profile-img">
+                    <h1>MIN FAAT TONG</h1>
+                    <p style="font-family: var(--pixel-font); font-size: 0.7rem; margin-top: 10px;">System: MFT-OS v1.0 // Retro-Futurism</p>
+                </section>
+
+                <!-- DYNAMIC PRODUCTS -->
+                <h2 id="products" style="font-size: 1.2rem; margin-bottom: 2rem;">[ DIGITAL_STORE ]</h2>
+                <div id="product-grid" class="product-grid">
+                    <!-- Loaded via JS -->
+                </div>
+
+                <!-- LAB -->
+                <h2 id="lab" style="font-size: 1.2rem; margin-bottom: 2rem;">[ EXPERIMENTAL_LAB ]</h2>
+                <div class="lab-screen">
+                    <div id="webgl-placeholder">
+                        <p>ASCII 3D SHOOTER</p>
+                        <p style="font-size: 0.6rem; opacity: 0.7;">WebGL Context Initializing...</p>
+                    </div>
+                </div>
+
+                <!-- ABOUT -->
+                <h2 id="about" style="font-size: 1.2rem; margin-bottom: 2rem;">[ SYSTEM_DOCS ]</h2>
+                <div class="about-section">
+                    <div id="content" class="markdown-body">
+                        <span style="font-family: var(--pixel-font); font-size: 0.8rem;">Loading README.md...</span>
+                    </div>
+                </div>
+
+                <footer>
+                    &copy; <span id="year"></span> MFT_LAB // ALL SYSTEMS NOMINAL
+                </footer>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // 1. DYNAMIC PRODUCT ENGINE
+        async function loadProducts() {
+            const grid = document.getElementById('product-grid');
+            // Change this to the RAW URL of your json file
+            const products_json_url = 'https://raw.githubusercontent.com/minfaatong/minfaatong.github.io/master/products.json';
+          
+            try {
+                const response = await fetch(products_json_url);
+                const products = await response.json();
+                
+                let html = '';
+                products.forEach(p => {
+                    html += `
+                        <div class="product-card" style="${p.isFlagship ? 'border-width: 4px; box-shadow: 0 0 10px var(--screen-text);' : ''}">
+                            <img src="${p.thumb}" class="product-thumb">
+                            <h3>${p.name}</h3>
+                            <p style="font-size: 0.9rem; margin-bottom: 1rem;">${p.description}</p>
+                            <a href="${p.link}" class="btn">DOWNLOAD_NOW</a>
+                        </div>
+                    `;
+                });
+
+                // WIREFRAME LOGIC: If products count is odd, add one wireframe card to keep 2x2 grid
+                if (products.length % 2 !== 0) {
+                    html += `
+                        <div class="product-card wireframe-card">
+                            <div>
+                                <p>[ EMPTY_SLOT ]</p>
+                                <p style="font-size: 0.5rem; margin-top:10px;">Future Product Blueprint</p>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                grid.innerHTML = html;
+            } catch (e) {
+                grid.innerHTML = `<p>Error loading products.json</p>`;
+            }
+        }
+
+        // 2. MARKDOWN ENGINE
+        async function renderMarkdown() {
+            const url = 'https://raw.githubusercontent.com/minfaatong/minfaatong.github.io/refs/heads/master/README.md';
+            const contentDiv = document.getElementById('content');
+            try {
+                const response = await fetch(url);
+                const text = await response.text();
+                contentDiv.innerHTML = marked.parse(text);
+            } catch (e) {
+                contentDiv.innerHTML = `ERROR: README_NOT_FOUND`;
+            }
+        }
+
+        loadProducts();
+        renderMarkdown();
+    </script>
+
+</body>
+</html>
